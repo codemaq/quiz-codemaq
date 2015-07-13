@@ -1,2 +1,0 @@
-# quiz-jure
-Proyecto Quiz
