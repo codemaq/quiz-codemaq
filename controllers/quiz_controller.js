@@ -12,25 +12,33 @@ exports.load = function(req, res, next, quizId) {
 };
 // GET /quizes
 exports.index = function(req, res) {
-	models.Quiz.findAll().then(function(quizes) {
-		res.render('quizes/index.ejs', { quizes: quizes});
-  }).catch(function(error) { next(error);})
+	if (req.query.buscar) {
+		models.Quiz.findAll({where: ["pregunta like ?", '%'+req.query.buscar+'%']}).then(function(quizes) {
+			if(typeof(quizes != 'undefined')){
+				res.render('quizes/index.ejs', {quizes: quizes, errors: []});
+			}
+	  }).catch(function(error) { next(error);})
+	} else {
+		models.Quiz.findAll().then(function(quizes) {
+			res.render('quizes/index.ejs', {quizes: quizes});
+	  }).catch(function(error) { next(error);})
+	}
 };
 // GET /quizes/:id
 exports.show = function(req, res) {
 	models.Quiz.findById(req.params.quizId).then(function(quiz) {
-		res.render('quizes/question.ejs', { quiz: quiz});
+		res.render('quizes/question.ejs', {quiz: quiz});
   })
 };
 // GET /quizes/:id/answer
 exports.answer = function(req, res) {
 	models.Quiz.findById(req.params.quizId).then(function(quiz) {
-		if (req.query.respuesta === quiz.respuesta) {
+		if (req.query.respuesta.toUpperCase() === quiz.respuesta.toUpperCase()) {
 			res.render('quizes/answer.ejs', 
-				 { quiz: quiz, respuesta: 'Correcto' });
+				 {quiz: quiz, respuesta: 'Correcto' });
 		} else {
 			res.render('quizes/answer.ejs', 
-				 { quiz: quiz, respuesta: 'Incorrecto'});
+				 {quiz: quiz, respuesta: 'Incorrecto'});
 		}
 	})
 };
