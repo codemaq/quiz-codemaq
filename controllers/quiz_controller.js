@@ -13,7 +13,7 @@ exports.load = function(req, res, next, quizId) {
 // GET /quizes
 exports.index = function(req, res) {
 	if (req.query.buscar) {
-		models.Quiz.findAll({where: ["pregunta like ?", '%'+req.query.buscar+'%']}).then(function(quizes) {
+		models.Quiz.findAll({where: ["UPPER(pregunta) LIKE UPPER(?)", '%'+req.query.buscar+'%'],order:'pregunta ASC'}).then(function(quizes) {
 			if(typeof(quizes != 'undefined')){
 				res.render('quizes/index.ejs', {quizes: quizes, errors: []});
 			}
