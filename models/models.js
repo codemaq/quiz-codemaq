@@ -40,7 +40,7 @@ sequelize.sync().then(function() {
 			{pregunta: 'Rey que convertía todo en oro', respuesta: 'Midas', tema: 'Ocio'},
 			{pregunta: 'Capital de España', respuesta: 'Madrid', tema: 'Humanidades'},
 			{pregunta: 'Capital de Bélgica', respuesta: 'Bruselas', tema: 'Humanidades'}, 
-			{pregunta: 'Primer mes del año', respuesta: 'Enero', tema: 'Otro'}]
+			{pregunta: 'Primer mes del año', respuesta: 'Enero', tema: 'Otro'} ]
 		)
 		.then(function(){console.log('Base de datos inicializada')});
 		};
