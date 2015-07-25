@@ -33,10 +33,14 @@ sequelize.sync().then(function() {
 	Quiz.count().then(function (count){
 		if(count === 0) {   
 		Quiz.bulkCreate( 
-			[ {pregunta: 'Capital de Italia', respuesta: 'Roma'},
-			{pregunta: 'Capital de Portugal', respuesta: 'Lisboa'},
-			{pregunta: 'Capital de España', respuesta: 'Madrid'},
-			{pregunta: 'Capital de Bélgica', respuesta: 'Bruselas'} ]
+			[ {pregunta: 'Capital de Italia', respuesta: 'Roma', tema: 'Humanidades'},
+			{pregunta: 'Unidad mínima de información empleada en informática', respuesta: 'Bit', tema: 'Tecnologia'},
+			{pregunta: 'Capital de Portugal', respuesta: 'Lisboa', tema: 'Humanidades'},
+			{pregunta: 'H2O', respuesta: 'Agua', tema: 'Ciencia'},
+			{pregunta: 'Rey que convertía todo en oro', respuesta: 'Midas', tema: 'Ocio'},
+			{pregunta: 'Capital de España', respuesta: 'Madrid', tema: 'Humanidades'},
+			{pregunta: 'Capital de Bélgica', respuesta: 'Bruselas', tema: 'Humanidades'}, 
+			{pregunta: 'Primer mes del año', respuesta: 'Enero', tema: 'Otro'}]
 		)
 		.then(function(){console.log('Base de datos inicializada')});
 		};
