@@ -1,0 +1,18 @@
+<p>
+	<label for="preg" class="rem">Pregunta:</label>
+<% if (formulario.length) { %>
+	<input type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>"/>
+<% } else {  %>
+	<input type="text" id="preg" name="quiz[pregunta]" value="" placeholder="Ingrese <%= quiz.pregunta %>"/>
+<% } %>
+</p>
+<p>
+	<label for="resp" class="rem">Respuesta:</label>
+<% if (formulario.length) { %>
+	<input type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>"/> <p>
+<% } else {  %>
+	<input type="text" id="resp" name="quiz[respuesta]" value="" placeholder="Ingrese <%= quiz.respuesta %>"/> <p>
+<% } %>
+</p>
+<a href="/quizes"><button type="button">Cancelar</button></a>
+<input type="submit" value="Salvar">
