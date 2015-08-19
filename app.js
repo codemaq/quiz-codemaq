@@ -28,6 +28,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 
 app.use(function(req, res, next) {
+	var tiempo_max = 120000;
+	if (req.session.user) {
+		if (req.session.tiempo_expirado > (new Date()).getTime()) {
+			req.session.tiempo_expirado = (new Date()).getTime() + tiempo_max;
+		} else {
+			delete req.session.user;
+		}
+	}
+	next();
+});
+
+
+app.use(function(req, res, next) {
 	if (!req.path.match(/\/login|\/logout/)) {
 		req.session.redir = req.path;
 	}

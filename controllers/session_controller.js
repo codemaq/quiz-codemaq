@@ -23,6 +23,7 @@ exports.create = function(req, res) {
 			return;
 		}
 		req.session.user = {id:user.id, username:user.username};
+		req.session.tiempo_expirado = (new Date()).getTime() + 120000;
 		res.redirect(req.session.redir.toString());
 	});
 };
