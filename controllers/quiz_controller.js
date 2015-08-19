@@ -42,18 +42,18 @@ exports.index = function(req, res) {
 // GET /quizes/:id
 exports.show = function(req, res) {
 	models.Quiz.findById(req.params.quizId).then(function(quiz) {
-		res.render('quizes/question.ejs', {quiz: quiz, errors: []});
+		res.render('quizes/question.ejs', {quiz: req.quiz, errors: []});
   })
 };
 // GET /quizes/:id/answer
 exports.answer = function(req, res) {
 	models.Quiz.findById(req.params.quizId).then(function(quiz) {
-		if (req.query.respuesta.toUpperCase() === quiz.respuesta.toUpperCase()) {
+		if (req.query.respuesta.toUpperCase() === req.quiz.respuesta.toUpperCase()) {
 			res.render('quizes/answer.ejs', 
-				 {quiz: quiz, respuesta: 'Correcto', errors: [] });
+				 {quiz: req.quiz, respuesta: 'Correcto', errors: [] });
 		} else {
 			res.render('quizes/answer.ejs', 
-				 {quiz: quiz, respuesta: 'Incorrecto', errors: []});
+				 {quiz: req.quiz, respuesta: 'Incorrecto', errors: []});
 		}
 	})
 };
