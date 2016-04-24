@@ -1,2 +1,2 @@
-# quiz-jure
+# quiz-codemaq
 Proyecto Quiz
